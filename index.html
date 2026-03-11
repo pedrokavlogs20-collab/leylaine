@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicóloga Leylani Baratto</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7d9e8c;
+    --sage-light: #a8c4b4;
+    --sage-pale: #e8f0ec;
+    --warm: #f5f0e8;
+    --beige: #ede5d8;
+    --terracotta: #c4856a;
+    --dark: #2c2820;
+    --text: #4a4238;
+    --text-muted: #8a7e74;
+    --white: #fdfbf8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--sage);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  }
+
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--sage);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.4s, height 0.4s, opacity 0.3s;
+    opacity: 0.6;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+  }
+
+  header.scrolled {
+    background: rgba(253,251,248,0.94);
+    backdrop-filter: blur(16px);
+    padding: 16px 64px;
+    box-shadow: 0 1px 0 rgba(125,158,140,0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .logo span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 2px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--sage);
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover { color: var(--dark); }
+  nav a:hover::after { width: 100%; }
+
+  .btn-agendar {
+    background: var(--sage) !important;
+    color: white !important;
+    padding: 11px 28px;
+    border-radius: 100px;
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.06em !important;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s !important;
+  }
+
+  .btn-agendar::after { display: none !important; }
+
+  .btn-agendar:hover {
+    background: var(--terracotta) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(196,133,106,0.3) !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--warm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 80px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(125,158,140,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    animation: fadeLeft 0.9s ease both;
+  }
+
+  .hero-eyebrow .line {
+    width: 40px; height: 1px;
+    background: var(--sage);
+  }
+
+  .hero-eyebrow span {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.12;
+    margin-bottom: 28px;
+    animation: fadeLeft 0.9s ease 0.15s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.85;
+    max-width: 420px;
+    margin-bottom: 48px;
+    animation: fadeLeft 0.9s ease 0.3s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    animation: fadeLeft 0.9s ease 0.45s both;
+  }
+
+  .btn-primary {
+    background: var(--dark);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--sage);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(125,158,140,0.35);
+  }
+
+  .btn-ghost {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+
+  .btn-ghost:hover { color: var(--terracotta); }
+
+  .btn-ghost .arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--beige);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .btn-ghost:hover .arrow {
+    border-color: var(--terracotta);
+    transform: translateX(4px);
+  }
+
+  .hero-right {
+    position: relative;
+    background: var(--sage-pale);
+    overflow: hidden;
+  }
+
+  .hero-photo-area {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-top: 120px;
+    position: relative;
+  }
+
+  /* Placeholder artístico para foto */
+  .photo-placeholder {
+    width: 75%;
+    max-width: 380px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, var(--sage-light) 0%, var(--sage) 60%, #5a7a6a 100%);
+    border-radius: 200px 200px 0 0;
+    position: relative;
+    animation: fadeRight 1s ease 0.2s both;
+  }
+
+  .photo-placeholder::before {
+    content: '👩‍⚕️';
+    font-size: 5rem;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+
+  .photo-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border: 1.5px solid rgba(125,158,140,0.3);
+    border-radius: 200px 200px 0 0;
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.015); opacity: 1; }
+  }
+
+  .credentials-badge {
+    position: absolute;
+    top: 140px;
+    right: 40px;
+    background: white;
+    border-radius: 16px;
+    padding: 18px 22px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    animation: fadeRight 0.9s ease 0.5s both;
+  }
+
+  .credentials-badge .crp {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  .credentials-badge .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--dark);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .stat-badge {
+    position: absolute;
+    bottom: 60px;
+    left: 30px;
+    background: var(--dark);
+    color: white;
+    border-radius: 12px;
+    padding: 16px 22px;
+    animation: fadeLeft 0.9s ease 0.6s both;
+  }
+
+  .stat-badge .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--sage-light);
+    line-height: 1;
+  }
+
+  .stat-badge .label {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .decor-circle {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(125,158,140,0.3);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .decor-circle::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background: rgba(125,158,140,0.1);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* INTRO BAND */
+  .intro-band {
+    background: var(--sage);
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .intro-band blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: 400;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .intro-band cite {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-style: normal;
+    display: block;
+    margin-top: 12px;
+  }
+
+  .intro-stats {
+    display: flex;
+    gap: 48px;
+  }
+
+  .intro-stat {
+    text-align: center;
+  }
+
+  .intro-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: white;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .intro-stat .label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SOBRE */
+  .sobre {
+    padding: 120px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .sobre-text .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .sobre-text .eyebrow .dot {
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+  }
+
+  .sobre-text .eyebrow span {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+
+  .sobre-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  .sobre-text h2 em { font-style: italic; color: var(--terracotta); }
+
+  .sobre-text p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  .formacoes {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .formacao {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--beige);
+  }
+
+  .formacao .year {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-weight: 500;
+    min-width: 48px;
+    margin-top: 2px;
+  }
+
+  .formacao .info h5 {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 3px;
+  }
+
+  .formacao .info p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+
+  .approach-card {
+    background: var(--warm);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .approach-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+  }
+
+  .approach-card.accent {
+    background: var(--sage);
+    grid-column: span 2;
+  }
+
+  .approach-card.dark {
+    background: var(--dark);
+  }
+
+  .approach-card .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+  }
+
+  .approach-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .approach-card.accent h4 { color: white; }
+  .approach-card.dark h4 { color: white; }
+
+  .approach-card p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .approach-card.accent p { color: rgba(255,255,255,0.75); }
+  .approach-card.dark p { color: rgba(255,255,255,0.5); }
+
+  /* SERVIÇOS */
+  .servicos {
+    background: var(--warm);
+    padding: 120px 80px;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-title .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-title .eyebrow span {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  .section-title .eyebrow .line {
+    width: 30px; height: 1px;
+    background: var(--sage);
+  }
+
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .section-title h2 em { font-style: italic; color: var(--terracotta); }
+
+  .servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .servico-card {
+    background: white;
+    border-radius: 24px;
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    border: 1px solid transparent;
+  }
+
+  .servico-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sage-light);
+    box-shadow: 0 20px 60px rgba(125,158,140,0.15);
+  }
+
+  .servico-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--sage-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .servico-card:hover::before { transform: scaleX(1); }
+
+  .servico-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--beige);
+    line-height: 1;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+
+  .servico-card:hover .servico-num { color: var(--sage-pale); }
+
+  .servico-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 14px;
+  }
+
+  .servico-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .servico-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 5px 12px;
+    background: var(--sage-pale);
+    color: var(--sage);
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  /* COMO FUNCIONA */
+  .processo {
+    padding: 120px 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--beige), var(--sage-light), var(--beige));
+  }
+
+  .step {
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .step-num {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: white;
+    border: 1.5px solid var(--beige);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--sage);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  .step:hover .step-num {
+    background: var(--sage);
+    color: white;
+    border-color: var(--sage);
+    transform: scale(1.1);
+  }
+
+  .step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* DEPOIMENTOS */
+  .depoimentos {
+    background: var(--sage-pale);
+    padding: 120px 80px;
+    overflow: hidden;
+  }
+
+  .depo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+  }
+
+  .depo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+    transition: transform 0.3s;
+  }
+
+  .depo-card:hover { transform: translateY(-4px); }
+
+  .depo-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--sage-pale);
+    position: absolute;
+    top: 8px; left: 24px;
+    line-height: 1;
+  }
+
+  .stars {
+    color: var(--terracotta);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .depo-card p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  .depo-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage-light), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .author-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .author-info {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 120px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(125,158,140,0.15) 0%, transparent 70%);
+  }
+
+  .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+  .cta .eyebrow-line {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .cta .eyebrow-line span {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+  }
+
+  .cta .eyebrow-line .line {
+    width: 30px; height: 1px;
+    background: var(--sage);
+  }
+
+  .cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .cta h2 em { font-style: italic; color: var(--sage-light); }
+
+  .cta p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-primary {
+    background: var(--sage);
+    color: white;
+    padding: 16px 44px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: all 0.3s;
+  }
+
+  .btn-cta-primary:hover {
+    background: var(--sage-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(125,158,140,0.4);
+  }
+
+  .btn-cta-outline {
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    padding: 16px 44px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+
+  .btn-cta-outline:hover {
+    border-color: var(--sage);
+    color: var(--sage-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1e1a16;
+    padding: 64px 80px 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .footer-brand .crp {
+    font-size: 0.7rem;
+    color: var(--sage);
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .footer-col h5 {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .footer-col a {
+    display: block;
+    text-decoration: none;
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--sage-light); }
+
+  .footer-col p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .footer-bottom {
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .social-btn:hover {
+    border-color: var(--sage);
+    color: var(--sage-light);
+    background: rgba(125,158,140,0.1);
+  }
+
+  /* MOBILE */
+  @media (max-width: 960px) {
+    header { padding: 16px 24px; }
+    nav { display: none; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { height: 400px; }
+    .hero-left { padding: 120px 32px 60px; }
+    .sobre { grid-template-columns: 1fr; padding: 80px 32px; gap: 48px; }
+    .servicos { padding: 80px 32px; }
+    .servicos-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .processo { padding: 80px 32px; }
+    .depoimentos { padding: 80px 32px; }
+    .depo-grid { grid-template-columns: 1fr; }
+    .cta { padding: 80px 32px; }
+    .intro-band { padding: 40px 32px; flex-direction: column; gap: 32px; }
+    .intro-stats { gap: 28px; }
+    footer { padding: 60px 32px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#" class="logo">
+    Psicóloga Leylani Baratto
+    <span>Psicóloga · CRP 08/36220 </span>
+  </a>
+  <nav>
+    <a href="#sobre">Sobre mim</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#contato" class="btn-agendar">Agendar consulta</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Psicologia</span>
+    </div>
+    <h1>Cuidando da sua <em>saúde mental</em> com dedicação</h1>
+    <p>Um espaço seguro e acolhedor para você se reconectar consigo mesmo, superar desafios e viver com mais equilíbrio e bem-estar.</p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Agendar consulta</a>
+      <a href="#sobre" class="btn-ghost">
+        <div class="arrow">→</div>
+        Conheça meu trabalho
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-area">
+      <div class="decor-circle"></div>
+      <div class="photo-placeholder"></div>
+      <div class="credentials-badge">
+        <div class="crp">CRP Registrada</div>
+        <div class="number">CRP 08/36220</div>
+      </div>
+      <div class="stat-badge">
+        <div class="num">500+</div>
+        <div class="label">Pacientes atendidos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <blockquote>
+    "Cada pessoa traz consigo uma história única. Meu papel é caminhar ao seu lado enquanto você reescreve os capítulos que deseja transformar."
+    <cite>— Psicóloga Leylani Baratto</cite>
+  </blockquote>
+  <div class="intro-stats">
+    <div class="intro-stat">
+      <div class="num">8+</div>
+      <div class="label">Anos de experiência</div>
+    </div>
+    <div class="intro-stat">
+      <div class="num">98%</div>
+      <div class="label">Satisfação</div>
+    </div>
+    <div class="intro-stat">
+      <div class="num">Online</div>
+      <div class="label">& presencial</div>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-text">
+    <div class="eyebrow">
+      <div class="dot"></div>
+      <span>Sobre mim</span>
+    </div>
+    <h2>Uma abordagem <em>humanizada</em> e baseada em evidências</h2>
+    <p>Sou psicóloga com especialização em Terapia Cognitivo-Comportamental (TCC) e abordagem humanista. Acredito que o autoconhecimento é a chave para uma vida mais plena.</p>
+    <p>Atendo adultos e adolescentes com questões relacionadas a ansiedade, depressão, relacionamentos, autoestima e desenvolvimento pessoal — tanto de forma presencial quanto online.</p>
+    <div class="formacoes">
+      <div class="formacao">
+        <span class="year">2016</span>
+        <div class="info">
+          <h5>Graduação em Psicologia</h5>
+          <p>Universidade de São Paulo — USP</p>
+        </div>
+      </div>
+      <div class="formacao">
+        <span class="year">2018</span>
+        <div class="info">
+          <h5>Especialização em TCC</h5>
+          <p>Instituto de Psicologia Cognitiva</p>
+        </div>
+      </div>
+      <div class="formacao">
+        <span class="year">2021</span>
+        <div class="info">
+          <h5>Mestrado em Saúde Mental</h5>
+          <p>UNICAMP — Campinas, SP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sobre-visual">
+    <div class="cards-grid">
+      <div class="approach-card">
+        <div class="card-icon">🧠</div>
+        <h4>TCC</h4>
+        <p>Terapia Cognitivo-Comportamental para transformar padrões de pensamento</p>
+      </div>
+      <div class="approach-card dark">
+        <div class="card-icon">💛</div>
+        <h4>Humanista</h4>
+        <p>Foco no potencial humano e no crescimento pessoal</p>
+      </div>
+      <div class="approach-card accent">
+        <div class="card-icon">🌱</div>
+        <h4>Mindfulness integrado</h4>
+        <p>Práticas de atenção plena para maior equilíbrio emocional e presença no dia a dia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos" id="servicos">
+  <div class="section-title">
+    <div class="eyebrow">
+      <div class="line"></div>
+      <span>Serviços</span>
+      <div class="line"></div>
+    </div>
+    <h2>Como posso <em>te ajudar</em></h2>
+  </div>
+  <div class="servicos-grid">
+    <div class="servico-card">
+      <div class="servico-num">01</div>
+      <h3>Psicoterapia Individual</h3>
+      <p>Sessões individuais focadas nas suas necessidades, dificuldades e objetivos. Um espaço exclusivo para o seu processo terapêutico.</p>
+      <div class="servico-tags">
+        <span class="tag">Ansiedade</span>
+        <span class="tag">Depressão</span>
+        <span class="tag">Autoestima</span>
+      </div>
+    </div>
+    <div class="servico-card">
+      <div class="servico-num">02</div>
+      <h3>Terapia Online</h3>
+      <p>Atendimento por videoconferência com a mesma qualidade e sigilo da consulta presencial. Comodidade sem abrir mão do cuidado.</p>
+      <div class="servico-tags">
+        <span class="tag">Flexibilidade</span>
+        <span class="tag">Acolhimento</span>
+        <span class="tag">Segurança</span>
+      </div>
+    </div>
+    <div class="servico-card">
+      <div class="servico-num">03</div>
+      <h3>Orientação Vocacional</h3>
+      <p>Para quem está em transição de carreira ou busca clareza sobre seus propósitos, habilidades e caminhos profissionais.</p>
+      <div class="servico-tags">
+        <span class="tag">Carreira</span>
+        <span class="tag">Propósito</span>
+        <span class="tag">Jovens</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="processo" id="processo">
+  <div class="section-title">
+    <div class="eyebrow">
+      <div class="line"></div>
+      <span>Como funciona</span>
+      <div class="line"></div>
+    </div>
+    <h2>Seu caminho para o <em>bem-estar</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Primeiro contato</h4>
+      <p>Entre em contato por WhatsApp, e-mail ou formulário para agendar sua consulta inicial.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Sessão de acolhimento</h4>
+      <p>Na primeira sessão nos conhecemos, entendo sua história e definimos os objetivos terapêuticos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Processo terapêutico</h4>
+      <p>Sessões regulares (geralmente semanais) de 50 minutos, presenciais ou online.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Evolução e bem-estar</h4>
+      <p>Com o tempo, novas ferramentas, autoconhecimento e uma vida com mais equilíbrio e leveza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="section-title">
+    <div class="eyebrow">
+      <div class="line"></div>
+      <span>Depoimentos</span>
+      <div class="line"></div>
+    </div>
+    <h2>O que dizem os <em>pacientes</em></h2>
+  </div>
+  <div class="depo-grid">
+    <div class="depo-card">
+      <div class="stars">★★★★★</div>
+      <p>A terapia com a Psicóloga Leylani Baratto transformou minha relação com a ansiedade. Aprendi ferramentas reais que uso todo dia. Me sinto outra pessoa.</p>
+      <div class="depo-author">
+        <div class="author-avatar">🌸</div>
+        <div>
+          <div class="author-name">Mariana S.</div>
+          <div class="author-info">Paciente há 2 anos</div>
+        </div>
+      </div>
+    </div>
+    <div class="depo-card">
+      <div class="stars">★★★★★</div>
+      <p>Comecei o atendimento online com receio, mas foi incrível. A Psicóloga Leylani Baratto cria um ambiente tão acolhedor que me sinto completamente à vontade.</p>
+      <div class="depo-author">
+        <div class="author-avatar">🌿</div>
+        <div>
+          <div class="author-name">Carlos M.</div>
+          <div class="author-info">Paciente online</div>
+        </div>
+      </div>
+    </div>
+    <div class="depo-card">
+      <div class="stars">★★★★★</div>
+      <p>Nunca imaginei que a terapia pudesse me ajudar tanto. A orientação vocacional me deu clareza para tomar decisões que mudaram minha vida.</p>
+      <div class="depo-author">
+        <div class="author-avatar">🦋</div>
+        <div>
+          <div class="author-name">Juliana R.</div>
+          <div class="author-info">Orientação vocacional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CONTATO -->
+<section class="cta" id="contato">
+  <div class="cta-inner">
+    <div class="eyebrow-line">
+      <div class="line"></div>
+      <span>Pronto para começar?</span>
+      <div class="line"></div>
+    </div>
+    <h2>Dê o primeiro passo para o seu <em>bem-estar</em></h2>
+    <p>Agende uma sessão e descubra como a psicoterapia pode te ajudar a viver com mais leveza, clareza e equilíbrio.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5500999999999" class="btn-cta-primary">💬 Falar pelo WhatsApp</a>
+      <a href="mailto:psico.leylani@gmail.com" class="btn-cta-outline">Enviar e-mail</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="name">Psicóloga Leylani Baratto</div>
+      <div class="crp">Psicóloga · CRP 08/36220</div>
+      <p>Atendimento presencial em Londrina - PR e online para todo o Brasil. Sigilo e ética em cada sessão.</p>
+    </div>  
+    <div class="footer-col">
+      <h5>Serviços</h5>
+      <a href="#">Psicoterapia Individual</a>
+      <a href="#">Terapia Online</a>
+      <a href="#">Orientação Vocacional</a>
+    </div>
+    <div class="footer-col">
+      <h5>Navegação</h5>
+      <a href="#sobre">Sobre mim</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#depoimentos">Depoimentos</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <p>📍 Londrina - PR<br><br>📞 (43) 9 8859-5350<br><br>✉️ psico.leylani@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Psicóloga Leylani Baratto · Todos os direitos reservados</p>
+    <div class="footer-social">
+      <a href="#" class="social-btn">📸</a>
+      <a href="#" class="social-btn">💼</a>
+      <a href="#" class="social-btn">💬</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+      ring.style.opacity = '0.3';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '0.6';
+    });
+  });
+
+  // Header scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.servico-card, .depo-card, .step, .approach-card, .formacao').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
